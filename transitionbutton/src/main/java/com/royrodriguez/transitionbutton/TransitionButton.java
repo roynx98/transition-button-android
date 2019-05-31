@@ -22,6 +22,7 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 
+import com.royrodriguez.transitionbutton.utils.ColorUtils;
 import com.royrodriguez.transitionbutton.utils.WindowUtils;
 
 public class TransitionButton extends AppCompatButton {
@@ -76,11 +77,11 @@ public class TransitionButton extends AppCompatButton {
 
             CharSequence dc = attrsArray.getString(R.styleable.TransitionButton_defaultColor);
             if (dc != null)
-                defaultColor = Color.parseColor(dc.toString());
+                defaultColor = ColorUtils.parse(dc.toString());
 
             CharSequence lc = attrsArray.getString(R.styleable.TransitionButton_loaderColor);
             if (lc != null)
-                loaderColor = Color.parseColor(lc.toString());
+                loaderColor = ColorUtils.parse(lc.toString());
 
             attrsArray.recycle();
         }
@@ -226,7 +227,7 @@ public class TransitionButton extends AppCompatButton {
     }
 
     private void startScaleAnimation(Animation.AnimationListener animationListener) {
-        float ts = WindowUtils.getHeight(getContext()) / getHeight() * 2;
+        float ts = (float) (WindowUtils.getHeight(getContext()) / getHeight() * 2.1);
         Animation anim = new ScaleAnimation(1f, ts,
             1, ts,
             Animation.RELATIVE_TO_SELF, 0.5f,
