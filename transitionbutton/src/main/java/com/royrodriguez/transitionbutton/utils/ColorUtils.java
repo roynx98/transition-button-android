@@ -16,8 +16,7 @@ public class ColorUtils {
             case 4:
                 color = color.replaceAll("#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])", "#$1$1$2$2$3$3");
             case 5:
-                color = color.replaceAll("#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])", "#" +
-                        "$2$2$3$3$4$4");
+                color = color.replaceAll("#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])", "#$2$2$3$3$4$4");
         }
 
         return Color.parseColor(color);

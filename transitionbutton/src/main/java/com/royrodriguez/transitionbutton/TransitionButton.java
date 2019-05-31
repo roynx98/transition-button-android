@@ -103,17 +103,13 @@ public class TransitionButton extends AppCompatButton {
         setText(null);
         setClickable(false);
 
-        if (android.os.Build.VERSION.SDK_INT >= 24) {
-            startWidthAnimation(initialHeight, new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationCancel(animation);
-                    isMorphingInProgress = false;
-                }
-            });
-        } else {
-            setText("");
-        }
+        startWidthAnimation(initialHeight, new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationCancel(animation);
+                isMorphingInProgress = false;
+            }
+        });
     }
 
     @Override
@@ -172,12 +168,6 @@ public class TransitionButton extends AppCompatButton {
                 break;
             case EXPAND:
                 currentState = State.TRANSITION;
-
-                if (android.os.Build.VERSION.SDK_INT < 24){
-                    if (onAnimationStopEndListener != null)
-                        onAnimationStopEndListener.onAnimationStopEnd();
-                    return;
-                }
 
                 startScaleAnimation(new AnimationListenerAdapter() {
                     @Override
