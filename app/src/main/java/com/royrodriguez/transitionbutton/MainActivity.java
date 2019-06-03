@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
+                        transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, new TransitionButton.OnAnimationStopEndListener() {
                             @Override
                             public void onAnimationStopEnd() {
 
