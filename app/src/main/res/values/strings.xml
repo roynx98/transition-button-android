@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TransitionButtonProject</string>
+    <string name="app_name">New Activity</string>
     <string name="main_title">Transition Button</string>
     <string name="main_button">login</string>
 </resources>
