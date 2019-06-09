@@ -84,3 +84,8 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 ## Thanks
+
+- [TransitionButton](https://github.com/AladinWay/TransitionButton)
+
+## Author
+Roy Rodriguez [roynx98@gmail.com](roynx98@gmail.com)
