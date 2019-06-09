@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         boolean isSuccessful = true;
                         
-			// Choose a stop animation if your call was succeful or not
+			// Choose a stop animation if your call was succesful or not
                         if (isSuccessful) {
                             transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
                                 @Override
