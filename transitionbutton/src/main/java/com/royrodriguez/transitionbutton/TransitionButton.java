@@ -31,6 +31,7 @@ public class TransitionButton extends AppCompatButton {
     private final int SCALE_ANIMATION_DURATION = 300;
     private final int SHAKE_ANIMATION_DURATION = 500;
     private final int COLOR_ANIMATION_DURATION = 350;
+    private int messageAnimationDuration = COLOR_ANIMATION_DURATION * 10;
 
     private State currentState;
 
@@ -112,6 +113,10 @@ public class TransitionButton extends AppCompatButton {
         });
     }
 
+    public void setMessageAnimationDuration(int messageAnimationDuration) {
+        this.messageAnimationDuration = messageAnimationDuration;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -142,7 +147,6 @@ public class TransitionButton extends AppCompatButton {
             progressCircularAnimatedDrawable.draw(canvas);
             invalidate();
         }
-
     }
 
     public void stopAnimation(StopAnimationStyle stopAnimationStyle, final OnAnimationStopEndListener onAnimationStopEndListener) {
@@ -179,7 +183,6 @@ public class TransitionButton extends AppCompatButton {
                 });
                 break;
         }
-
     }
 
     private void startWidthAnimation(int to, AnimatorListenerAdapter onAnimationEnd) {
@@ -206,7 +209,6 @@ public class TransitionButton extends AppCompatButton {
 
         animatorSet.start();
     }
-
 
     private void startShakeAnimation(Animation.AnimationListener animationListener) {
         TranslateAnimation shake = new TranslateAnimation(0, 15, 0, 0);
@@ -240,7 +242,7 @@ public class TransitionButton extends AppCompatButton {
                 setClickable(true);
                 startColorAnimation(errorColor, defaultColor);
             }
-        }, COLOR_ANIMATION_DURATION * 10);
+        }, messageAnimationDuration);
     }
 
     private void startColorAnimation(int from, int to) {

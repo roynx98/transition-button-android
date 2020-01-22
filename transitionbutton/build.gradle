@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/roynx98/transition-button-android'
     gitUrl = 'https://github.com/roynx98/transition-button-android.git'
 
-    libraryVersion = '0.1.0'
+    libraryVersion = '0.2.0'
 
     developerId = 'roynx98'
     developerName = 'Roy Rodriguez'
