@@ -15,7 +15,7 @@
 ### Gradle
 ```groovy
 dependencies {
-	implementation 'com.royrodriguez:transitionbutton:0.1.0'
+	implementation 'com.royrodriguez:transitionbutton:0.2.0'
 }
 ```
 
