@@ -9,7 +9,7 @@
   
   ![](shake.gif)
   
-  
+  	
   
 ## Installation
 ### Gradle
