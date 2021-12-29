@@ -72,6 +72,7 @@ public class TransitionButton extends AppCompatButton {
         Resources.Theme theme = context.getTheme();
         theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
         defaultColor = typedValue.data;
+        initialText = getText().toString();
 
         if (attrs != null) {
             TypedArray attrsArray = context.obtainStyledAttributes(attrs, R.styleable.TransitionButton);
@@ -149,26 +150,41 @@ public class TransitionButton extends AppCompatButton {
         }
     }
 
+    /**
+     * Reset the WidthAnimation and ScaleAnimation, when get back from NewActivity.
+     * This method could be call from {@see onResume()} of Activity who hold this view.
+     *
+     * @param onAnimationStopEndListener: could be null if there's nothing to do after the SHAKE
+     * @param isShake: Set this value true if you need a SHAKE after resize the button.
+     */
+    public void resetAnimation(final OnAnimationStopEndListener onAnimationStopEndListener, final boolean isShake){
+        startWidthAnimation(initialWidth, new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                setText(initialText);
+                setClickable(true);
+                if(isShake){
+                    currentState = State.ERROR;
+                    startShakeAnimation(new AnimationListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            if (onAnimationStopEndListener != null)
+                                onAnimationStopEndListener.onAnimationStopEnd();
+                        }
+                    });
+                }else {
+                    currentState = State.IDLE;
+                }
+            }
+        });
+        // Clear scale animation
+        clearAnimation();
+    }
+
     public void stopAnimation(StopAnimationStyle stopAnimationStyle, final OnAnimationStopEndListener onAnimationStopEndListener) {
         switch (stopAnimationStyle) {
             case SHAKE:
-                currentState = State.ERROR;
-
-                startWidthAnimation(initialWidth, new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        setText(initialText);
-                        startShakeAnimation(new AnimationListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                currentState = State.IDLE;
-                                setClickable(true);
-                                if (onAnimationStopEndListener != null)
-                                    onAnimationStopEndListener.onAnimationStopEnd();
-                            }
-                        });
-                    }
-                });
+                resetAnimation(onAnimationStopEndListener, true);
                 break;
             case EXPAND:
                 currentState = State.TRANSITION;

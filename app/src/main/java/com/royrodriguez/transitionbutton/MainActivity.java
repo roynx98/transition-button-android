@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        boolean isSuccessful = false;
+                        boolean isSuccessful = true;
 
                         if (isSuccessful) {
                             transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
                 }, 2000);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        transitionButton.resetAnimation(null, false);
     }
 
 }
