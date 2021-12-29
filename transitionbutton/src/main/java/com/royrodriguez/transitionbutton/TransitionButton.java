@@ -184,22 +184,7 @@ public class TransitionButton extends AppCompatButton {
     public void stopAnimation(StopAnimationStyle stopAnimationStyle, final OnAnimationStopEndListener onAnimationStopEndListener) {
         switch (stopAnimationStyle) {
             case SHAKE:
-
-                startWidthAnimation(initialWidth, new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        setText(initialText);
-                        startShakeAnimation(new AnimationListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                currentState = State.IDLE;
-                                setClickable(true);
-                                if (onAnimationStopEndListener != null)
-                                    onAnimationStopEndListener.onAnimationStopEnd();
-                            }
-                        });
-                    }
-                });
+                resetAnimation(onAnimationStopEndListener, true);
                 break;
             case EXPAND:
                 currentState = State.TRANSITION;
